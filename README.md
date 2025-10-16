@@ -1,72 +1,131 @@
+# Online Retail Transation Analysis Project 
+
+This project focuses on data exploration, cleaning, analysis, and visualisation. It analyses online retail transaction data to understand customer behaviour, identify popular products, and provide insights that help optimise pricing and marketing strategies.
+
 # ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-## Template Instructions
 
-Welcome,
+## Dataset Content
+* The "Online Retail Transaction" dataset contains information on transactions made by customers through an online retail platform. The dataset includes data on the products that were purchased, the quantity of each product, the date and time of each transaction, the price of each product, the unique identifier for each customer who made a purchase, and the country where each customer is located. This dataset can be used to analyze customer behavior and preferences, identify popular products, and optimize pricing and marketing strategies. The dataset is well-suited for data analysis and machine learning applications, as it contains a large volume of transactional data that can be used to train predictive models and make data-driven decisions.
 
-This is the Code Institute student template for the Data Analytics capstone project. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+    #### Column Descriptors
+        - StockCode: A code used to identify the product that was purchased
+        - Description: A brief description of the product that was purchased
+        - Quantity: The quantity of the product that was purchased
+        - InvoiceDate: The date and time that the purchase was made
+        - UnitPrice: The price of one unit of the product that was purchased
+        - CustomerID: The unique identifier for the customer who made the purchase
+        - Country: The country where the customer who made the purchase is located
+## Business Requirements
+* Analyse online retail transaction data to understand customer behaviour, identify popular products, and optimise pricing and marketing strategies. Provide insights into customer behaviour, popular products, and pricing strategies to improve sales and marketing efforts.
 
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
 
-## How to use this repo
 
-1. Use this template to create your GitHub project repo. Click the **Use this template** button, then click **Create a new repository**.
+## Hypothesis and how to validate?
+1. High-spending customers drive the majority of total sales.
 
-1. Copy the URL of your repository to your clipboard.
+        Validation:
+        - Segment customers based on total spending (e.g., Low, Medium, High).
+        - Calculate the total sales contribution of each segment.
 
-1. In VS Code, select **File** -> **Open Folder**.
 
-1. Select your `vscode-projects` folder, then click the **Select Folder** button on Windows, or the **Open** button on Mac.
+2. Sales follow clear seasonal or monthly patterns.
 
-1. From the top menu in VS Code, select **Terminal** > **New Terminal** to open the terminal.
+        Validation:
+        - Group transactions by month and plot total sales over time.
+        - Identify peaks and dips in the trend line.
 
-1. In the terminal, type `git clone` followed by the URL of your GitHub repository. Then hit **Enter**. This command will download all the files in your GitHub repository into your vscode-projects folder.
 
-1. In VS Code, select **File** > **Open Folder** again.
+3. A few products generate a large share of revenue.
 
-1. This time, navigate to and select the folder for the project you just downloaded. Then, click **Select Folder**.
+        Validation:
+        - Rank products by total sales.
+        - Visualize the top 10 products.
 
-1. A virtual environment is necessary when working with Python projects to ensure each project's dependencies are kept separate from each other. You need to create your virtual environment, also called a venv, and then ensure that it is activated any time you return to your workspace.
-Click the gear icon in the lower left-hand corner of the screen to open the Manage menu and select **Command Palette** to open the VS Code command palette.
 
-1. In the command palette, type: *create environment* and select **Python: Create Environment…**
+4. Frequent customers tend to have higher total spending.
 
-1. Choose **Venv** from the dropdown list.
+        Validation:
+        - Group by customer and calculate purchase frequency and total spent.
+        - Plot frequency vs. total sales.
 
-1. Choose the Python version you installed earlier. Currently, we recommend Python 3.12.8
+## Project Plan
+### High-Level Steps for the Analysis
 
-1. **DO NOT** click the box next to `requirements.txt`, as you need to do more steps before you can install your dependencies. Click **OK**.
+#### 1. Data Collection:
 
-1. You will see a `.venv` folder appear in the file explorer pane to show that the virtual environment has been created.
+    1. Used the Online Retail dataset (one year of transaction records) as the source.
+    2. Imported the data into a Jupyter Notebook environment using pandas.
 
-1. **Important**: Note that the `.venv` folder is in the `.gitignore` file so that Git won't track it.
+#### 2. Data Cleaning & Preparation:
 
-1. Return to the terminal by clicking on the TERMINAL tab, or click on the **Terminal** menu and choose **New Terminal** if no terminal is currently open.
+    1. Removed duplicates and irrelevant records
+        - Adjustments. 
+        - Credit notes.
+        - Postage entries.
+    2. Handled missing values in key fields such as Description and CustomerID.
+    3. Standardised data types for performance and consistency.
+    4. Filtered and aligned credit and sales transactions to ensure data accuracy.
 
-1. In the terminal, use the command below to install your dependencies. This may take several minutes.
+#### 3. Feature Engineering:
 
- ```console
- pip3 install -r requirements.txt
- ```
+    1. Extracted time-based features such as year, month, day, and weekday.
+    2. Calculated TotalSales as Quantity × UnitPrice.
 
-1. Open the `jupyter_notebooks` directory, and click on the notebook you want to open.
+#### 4. Exploratory Data Analysis & Visualisation:
 
-1. Click the **kernel** button and choose **Python Environments**.
+    1. Descriptive statistics to understand overall sales performance.
+    2. Trend analysis over time (daily and monthly).
+    3. Customer segmentation based on spending and frequency.
+    4. Product performance analysis to identify top sellers.
 
-Note that the kernel says `Python 3.12.8` as it inherits from the venv, so it will be Python-3.12.8 if that is what is installed on your PC. To confirm this, you can use the command below in a notebook code cell.
+#### 5. Insights & Interpretation:
 
-```console
-! python --version
-```
+    1. Identified customer behaviour patterns.
+    2. Highlighted key products contributing to revenue.
+    3. Provided actionable insights for pricing and marketing strategies.
 
-## Deployment Reminders
+### Rationale for Methodologies
 
-* Set the `.python-version` Python version to a [Heroku-22](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version that closest matches what you used in this project.
-* The project can be deployed to Heroku using the following steps.
+- Pandas and NumPy were used for their flexibility and efficiency in handling large transactional datasets.
+- Descriptive statistics provided a solid foundation for understanding data distribution and overall trends.
+- Trend analysis and segmentation were selected to uncover customer behaviour patterns and sales cycles, which are directly useful for marketing and pricing strategies.
+- Data visualisation (Matplotlib and Seaborn) made insights more interpretable and business-friendly.
+- This approach balances analytical rigour with business relevance, ensuring results can support decision-making.
 
-1. Log in to Heroku and create an App
-2. At the **Deploy** tab, select **GitHub** as the deployment method.
-3. Select your repository name and click **Search**. Once it is found, click **Connect**.
-4. Select the branch you want to deploy, then click **Deploy Branch**.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button **Open App** at the top of the page to access your App.
-6. If the slug size is too large, then add large files not required for the app to the `.slugignore` file.
+
+## Ethical considerations
+* The dataset is used for this analysis does not cointain any private or sensitive information.
+
+## Development Roadmap
+
+### Challenges and strategies
+
+1. While cleaning the data, I removed duplicate rows, which caused the index to become non-linear. I hadn’t realized earlier that this could lead to confusion during join or merge operations. To avoid such issues, it’s good practice to use reset_index(drop=True) after removing rows (e.g., dropping duplicates, NA values, or applying filters) unless the original index needs to be preserved.
+
+2. I initially converted the CustomerID column to a category datatype, but this caused errors during the groupby operation. To resolve the issue, I converted CustomerID (and StockCode) to string before performing the grouping.
+
+3. I found there were 3 records with 'adjust bad debt' description. 
+   - These are accounting adjustments, not actual sales.
+   - Keeping them would distort total sales and product/customer analysis.
+   - Removing them ensures clean, analysis-ready transaction data.
+
+* What new skills or tools do you plan to learn next based on your project experience? 
+
+
+## Main Data Analysis Libraries
+- Pandas is used for data exploration and cleaning.
+- Matplotlib is used for visualisation.
+- Seaborn is used for visualisation.
+- Plotly is used for interactive visualisation.
+
+
+## Credits 
+
+- The dataset was downloaded from [Kaggle](https://www.kaggle.com/datasets/abhishekrp1517/online-retail-transactions-dataset).
+- For this project I have used the [Code Institute Project Template](https://github.com/Code-Institute-Org/data-analytics-template/tree/main).
+- I used Code Institute learning materials to review visualisation techniques.
+
+
+## Acknowledgements
+* Special Thanks for Code institute team and my group members.
