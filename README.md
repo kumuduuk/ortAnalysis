@@ -59,7 +59,10 @@ This project focuses on data exploration, cleaning, analysis, and visualisation.
 
 #### 2. Data Cleaning & Preparation:
 
-    1. Removed duplicates and irrelevant records (e.g., adjustments and invalid credit notes).
+    1. Removed duplicates and irrelevant records
+        - Adjustments. 
+        - Credit notes.
+        - Postage entries.
     2. Handled missing values in key fields such as Description and CustomerID.
     3. Standardised data types for performance and consistency.
     4. Filtered and aligned credit and sales transactions to ensure data accuracy.
